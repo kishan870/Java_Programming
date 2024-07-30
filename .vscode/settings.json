@@ -1,0 +1,11 @@
+{
+    "workbench.colorTheme": "Default Dark Modern",
+    "redhat.telemetry.enabled": true,
+    "git.defaultCloneDirectory": "",
+    "git.path": "C:\\Program Files\\Git\\bin\\git.exe",
+    "java.project.outputPath": "bin",
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.project.referencedLibraries": ["lib/**/*.jar"]
+}

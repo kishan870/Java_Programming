@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ArrayListInsertion {
+public class ArrayListBasics {
     public static void main(String[] args) {
         
         //Creating an ArrayList
@@ -23,6 +23,11 @@ public class ArrayListInsertion {
         strList.add("B");
         strList.add("C");
         System.out.println("ArrayList after insertion: " + strList);
+
+        //Accessing the elements of the ArrayList
+        //get element at position 2
+        System.out.println("Element at position 2: " + numbers.get(2));
+        System.out.println("StringList element at number 1: " + strList.get(1));
 
     }
 }

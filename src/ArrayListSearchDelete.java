@@ -18,11 +18,21 @@ public class ArrayListSearchDelete {
 
         //Search using indexOf method
         int index = strList.indexOf("D");
-        System.out.println("The element C is found at position: " + index );
+        System.out.println("The element C is found at position: " + index);
 
         //-1 indecates that the element is not found
         index = strList.indexOf("F");
-        System.out.println("The element F is found at position: " + index );
+        System.out.println("The element F is found at position: " + index);
+
+        System.out.println("The array list: " + strList);
+
+        //Deleting element based on the position
+        strList.remove(3);
+        System.out.println("Array List after deletion: " + strList);
+
+        //Deleting based on object
+        strList.remove("C");
+        System.out.println("Array List after deletion: " + strList);
 
     }
 }

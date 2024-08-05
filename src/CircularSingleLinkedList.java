@@ -23,6 +23,10 @@ public class CircularSingleLinkedList {
     public void display() {
         System.out.println("Displaying the circular linked list:");
 
+        if(size == 0) {
+            System.out.println("List is empty");
+        }
+
         CircularNode curr = head;
         if(size == 1) {
             System.out.println(head.value);
@@ -73,6 +77,22 @@ public class CircularSingleLinkedList {
         System.out.println("Successfully inserted node with value " + nodeValue + " at position " + index);
     }
 
+    public void searchNode(int nodeValue) {
+        CircularNode curr = head;
+
+        for(int i=0; i<size; i++) {
+            if(curr.value == nodeValue) {
+                System.out.println("The node with value " + nodeValue +" is found in location " + i);
+                return;
+            }
+
+            curr = curr.next;
+
+        }
+
+        System.out.println("Node value " + nodeValue + " not found");
+    }
+
     public static void main(String[] args) {
         CircularSingleLinkedList csll = new CircularSingleLinkedList();
 
@@ -93,6 +113,10 @@ public class CircularSingleLinkedList {
 
         csll.insertNode(21, 7);
         csll.display();
+
+        csll.searchNode(12);
+        csll.searchNode(17);
+        csll.searchNode(21);
     }
 }
 

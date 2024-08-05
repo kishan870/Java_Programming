@@ -93,6 +93,51 @@ public class CircularSingleLinkedList {
         System.out.println("Node value " + nodeValue + " not found");
     }
 
+    public void deleteNode(int location) {
+        CircularNode curr = head;
+        
+        if(size == 0) {
+            System.out.println("Cannot delete from empty list");
+            return;
+        }
+
+        size--;
+        location = Math.min(location, size);
+
+        if(location == 0) {
+            head = head.next;
+            tail.next.next = null;
+        }
+
+        else if(location == size) {
+
+            while(curr.next != tail) {
+                curr = curr.next;
+            }
+
+            curr.next = head;
+            tail.next = null;
+            tail = curr;
+
+        }
+
+        else {
+            for(int i=0; i<location; i++) {
+                curr = curr.next;
+            }
+
+            curr.value = curr.next.value;
+            CircularNode tempNode = curr.next;
+
+            curr.next = tempNode.next;
+            tempNode.next = null;
+        }
+
+        System.out.println("Successfully deleted element from location " + location);
+
+
+    }
+
     public static void main(String[] args) {
         CircularSingleLinkedList csll = new CircularSingleLinkedList();
 
@@ -117,6 +162,19 @@ public class CircularSingleLinkedList {
         csll.searchNode(12);
         csll.searchNode(17);
         csll.searchNode(21);
+
+        csll.createCircularNode(20);
+        csll.createCircularNode(25);
+        csll.display();
+
+        csll.deleteNode(0);
+        csll.display();
+
+        csll.deleteNode(3);
+        csll.display();
+
+        csll.deleteNode(10);
+        csll.display();
     }
 }
 

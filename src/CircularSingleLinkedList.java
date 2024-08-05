@@ -35,14 +35,64 @@ public class CircularSingleLinkedList {
         }
     }
 
+    public void insertNode(int nodeValue, int index) {
+        CircularNode node = new CircularNode(nodeValue);
+
+        if(index <0 || index > size) {
+            System.out.println("Invalid index");
+            return;
+        }
+
+        size++;
+
+
+        if(index == 0) {
+            tail.next = node;
+            node.next = head;
+            head = node;
+        }
+
+        else if(index == size-1) {
+            node.next = head;
+            tail.next = node;
+            tail = node;
+        }
+
+        else {
+            CircularNode curr = head;
+
+            for(int i=0; i<index-1; i++) {
+                curr = curr.next;
+            }
+
+            System.out.println("Curr Value: " + curr.value);
+            node.next = curr.next;
+            curr.next = node;
+        }
+
+        System.out.println("Successfully inserted node with value " + nodeValue + " at position " + index);
+    }
+
     public static void main(String[] args) {
-        CircularSingleLinkedList CSLL = new CircularSingleLinkedList();
+        CircularSingleLinkedList csll = new CircularSingleLinkedList();
 
-        CSLL.createCircularNode(5);
-        CSLL.display();
+        csll.createCircularNode(5);
+        csll.display();
 
-        CSLL.createCircularNode(10);
-        CSLL.display();
+        csll.createCircularNode(10);
+        csll.display();
+
+        csll.createCircularNode(12);
+        csll.display();
+
+        csll.insertNode(15, 2);
+        csll.display();
+
+        csll.insertNode(17, 4);
+        csll.display();
+
+        csll.insertNode(21, 7);
+        csll.display();
     }
 }
 

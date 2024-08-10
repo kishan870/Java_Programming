@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class StackUsingArray {
     private int top;
     private int[] arr;
@@ -54,9 +56,7 @@ public class StackUsingArray {
         }
 
         System.out.println("Displaying Stack contents: ");
-        for(int x:arr) {
-            System.out.println(x);
-        }
+        System.out.println(Arrays.toString(arr));
     }
 
     public static void main(String[] args) {

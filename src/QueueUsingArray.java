@@ -43,6 +43,16 @@ public class QueueUsingArray {
         return x;
     }
 
+    public int peek() {
+        if(isEmpty()) {
+            System.out.println("Queue is empty. Nothing to peek.");
+            return -1;
+        }
+
+        System.out.printf("Top of queue: %d\n", arr[topOfQueue]);
+        return arr[topOfQueue];
+    }
+
     public void displayQueue() {
         if(isEmpty()) {
             System.out.println("Queue is empty. Nothing to display.");
@@ -69,7 +79,9 @@ public class QueueUsingArray {
         queue.enqueue(11);
 
         queue.displayQueue();
+        queue.peek();
         queue.dequeue();
+        queue.peek();
         queue.displayQueue();
     }
 }

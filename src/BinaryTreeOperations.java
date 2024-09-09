@@ -43,6 +43,24 @@ public class BinaryTreeOperations {
         System.out.println("LevelOrder Traversal");
         levelOrder(root);
 
+        System.out.println("");
+        boolean find = searchTree(-5, root);
+
+        if(find)
+            System.out.print("Node Found");
+        else
+            System.out.print("Node Not found");
+
+        System.out.println("");
+        insertNodeLevel(11, root);
+        inOrder(root);
+
+
+        System.out.println("-".repeat(10));
+        deleteNode(10, root);
+        deleteNode(10, root);
+        inOrder(root);
+
     }
 
     public static void preOrder(TreeNode node) {
@@ -89,5 +107,93 @@ public class BinaryTreeOperations {
             if(frontNode.right != null)
                 bfsQueue.add(frontNode.right);
         }
+    }
+
+    public static boolean searchTree(int value, TreeNode root) {
+
+        if(root == null)
+            return false;
+
+        if(root.value == value)
+            return true;
+
+        return searchTree(value, root.left) || searchTree(value, root.right);
+    }
+
+    public static void insertNodeLevel(int value, TreeNode root) {
+
+        if(searchTree(value, root)) {
+            System.out.println(value + " already exists in the tree");
+            return;
+        }
+
+        TreeNode newNode = new TreeNode(value);
+
+        Queue<TreeNode> bfsQueue = new LinkedList<>();
+        bfsQueue.add(root);
+
+        while (bfsQueue.size() > 0) {
+            TreeNode node = bfsQueue.poll();
+
+            if(node.left == null) {
+                node.left = newNode;
+                System.out.println("Successfully inserted " + value + " to the tree");
+                return;
+
+            } else if(node.right == null) {
+                node.right = newNode;
+                System.out.println("Successfully inserted " + value + " to the tree");
+                return;
+
+            } else {
+                bfsQueue.add(node.left);
+                bfsQueue.add(node.right);
+            }
+
+        }
+
+    }
+
+    public static void deleteNode(int value, TreeNode root) {
+        if(root == null) {
+            System.out.println("Tree is empty. Cannot delete.");
+            return;
+        }
+
+        if(root.value == value) {
+            root = null;
+            System.out.println("Successfully deleted " + value);
+        }
+
+        Queue<TreeNode> bfsQueue = new LinkedList<>();
+        bfsQueue.add(root);
+
+        while (!bfsQueue.isEmpty()) {
+            TreeNode node = bfsQueue.poll();
+            
+            if(node.left != null) {
+                if(node.left.value == value) {
+                    System.out.println("Successfully deleted " + value);
+                    node.left = null;
+                    return;
+
+                } else {
+                    bfsQueue.add(node.left);
+                }
+            }
+
+            if(node.right != null) {
+                if(node.right.value == value) {
+                    System.out.println("Successfully deleted " + value);
+                    node.right = null;
+                    return;
+                    
+                } else {
+                    bfsQueue.add(node.right);
+                }
+            }
+        }
+
+        System.out.println("Cannot delete " + value + " because it does not exist in the tree");
     }
 }
